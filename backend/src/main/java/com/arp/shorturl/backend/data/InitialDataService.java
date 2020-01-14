@@ -4,27 +4,34 @@ import com.arp.shorturl.backend.data.entities.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class InitialDataService {
 
+    private List<Mapping> toReturn = new ArrayList<>();
     @Autowired
     private ShortUrlGenerator shortUrlGenerator;
-    List<Mapping> toReturn = new ArrayList<>();
 
-    public List<Mapping> getAll() {
+    @PostConstruct
+    public void init() {
         Mapping m1 = new Mapping("link1", shortUrlGenerator.generateShortUrl());
         Mapping m2 = new Mapping("link2", shortUrlGenerator.generateShortUrl());
 
         toReturn.add(m1);
         toReturn.add(m2);
+    }
 
+    public List<Mapping> getAll() {
         return toReturn;
     }
 
-    public void addNewMapping(String longUrl) {
-        toReturn.add(new Mapping(longUrl, shortUrlGenerator.generateShortUrl()));
+    public String addNewMapping(String longUrl) {
+        String generatedValue = shortUrlGenerator.generateShortUrl();
+        toReturn.add(new Mapping(longUrl, generatedValue));
+
+        return generatedValue;
     }
 }
