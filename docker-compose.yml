@@ -7,3 +7,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ENTRY_TTL=5
+      - SHORTURL_NOCH=10
+
+  redis:
+    image: 'redis:alpine'

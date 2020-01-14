@@ -6,7 +6,7 @@ WORKDIR /tmp
 COPY pom.xml .
 COPY src/ ./src/
 
-RUN mvn clean install
+RUN mvn clean install -Pprod
 
 # copy JAR to runtime container
 FROM openjdk:8-jdk-alpine

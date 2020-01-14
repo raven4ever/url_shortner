@@ -1,11 +1,14 @@
-package com.arp.shorturl.backend.data;
+package com.arp.shorturl.backend.data.utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ShortUrlGenerator {
-    private int targetNumberOfCharacters = 7;
+
+    @Value("${app.shorturl.numberofcharacters}")
+    private int targetNumberOfCharacters;
 
     public String generateShortUrl() {
         return RandomStringUtils.randomAlphanumeric(targetNumberOfCharacters);
