@@ -1,6 +1,17 @@
 version: '3'
 
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8181:8181
+    environment:
+      - BACKEND_PROTOCOL=http
+      - BACKEND_HOST=backend
+      - BACKEND_PORT=8080
+
   backend:
     build:
       context: ./backend
@@ -10,7 +21,7 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - ENTRY_TTL=5
+      - ENTRY_TTL=500
       - SHORTURL_NOCH=10
 
   redis:

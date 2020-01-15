@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<h:head>
+    <title>URL Shortner</title>
+</h:head>
+
+<h:body>
+    <h:form id="new-mapping">
+
+        <p:panel header="Create new Short URL">
+            <h:panelGrid columns="3" cellpadding="4">
+                <h:outputText value="Your URL:"/>
+                <p:inputText id="longURL" value="#{longUrlBean.longURL}"/>
+                <p:commandButton value="Create" action="#{indexController.addNewMapping()}"/>
+
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

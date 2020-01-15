@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 
 @RestController
+@Slf4j
 public class ApiRestController {
 
     @Autowired
@@ -23,6 +26,7 @@ public class ApiRestController {
 
     @PostMapping(path = "/add", consumes = "text/plain", produces = "text/plain")
     public String addNewMapping(@RequestBody String longUrl) {
+        log.info("processing for->" + longUrl);
         return dataService.addNewMapping(longUrl);
     }
 

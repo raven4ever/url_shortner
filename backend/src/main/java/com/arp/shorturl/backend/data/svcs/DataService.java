@@ -43,7 +43,7 @@ public class DataService {
 
         mappingRepository.save(new Mapping(generatedValue, longUrl, entryTtl));
 
-        log.info("saved->" + generatedValue);
+        log.info("saved->" + generatedValue + " for entry->" + longUrl);
 
         return generatedValue;
     }
