@@ -20,7 +20,7 @@ public class ApiRestController {
         return dataService.getAll();
     }
 
-    @GetMapping("/get/{existingMapping}")
+    @GetMapping(value = "/get/{existingMapping}", produces = "text/plain")
     public String getExistingMapping(@PathVariable("existingMapping") String existingMapping) {
         return dataService.getExistingMapping(existingMapping);
     }

@@ -25,9 +25,9 @@ public class RestClientService {
     }
 
     public String getExistingMapping(String existingShorlUrl) {
-        ResponseEntity<String> nmr = restTemplate.postForEntity(backendUrl + "/add", existingShorlUrl, String.class);
+        ResponseEntity<String> nmr = restTemplate.getForEntity(backendUrl + "/get/" + existingShorlUrl, String.class);
 
-        log.info("generated url->" + nmr.getBody());
+        log.info("returned url->" + nmr.getBody());
 
         return nmr.getBody();
     }

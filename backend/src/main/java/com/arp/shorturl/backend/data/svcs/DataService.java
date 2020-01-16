@@ -31,8 +31,8 @@ public class DataService {
     public void init() {
         log.info("ttl->" + entryTtl);
 
-        Mapping m1 = new Mapping(shortUrlGenerator.generateShortUrl(), "link1", entryTtl);
-        Mapping m2 = new Mapping(shortUrlGenerator.generateShortUrl(), "link2", entryTtl);
+        Mapping m1 = new Mapping(shortUrlGenerator.generateShortUrl(), "google.com", entryTtl);
+        Mapping m2 = new Mapping(shortUrlGenerator.generateShortUrl(), "yahoo.com", entryTtl);
 
         mappingRepository.save(m1);
         mappingRepository.save(m2);

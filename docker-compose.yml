@@ -8,9 +8,11 @@ services:
     ports:
       - 8181:8181
     environment:
+      - SERVER_PORT=8181
       - BACKEND_PROTOCOL=http
       - BACKEND_HOST=backend
       - BACKEND_PORT=8080
+      - NOSUCHELEMENT_TEXT=q1w2e3r4t5y6
 
   backend:
     build:
@@ -19,10 +21,12 @@ services:
     ports:
       - 8080:8080
     environment:
+      - SERVER_PORT=8080
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - ENTRY_TTL=500
       - SHORTURL_NOCH=10
+      - NOSUCHELEMENT_TEXT=q1w2e3r4t5y6
 
   redis:
     image: 'redis:alpine'
