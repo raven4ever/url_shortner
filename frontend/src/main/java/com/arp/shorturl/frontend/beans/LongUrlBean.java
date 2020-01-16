@@ -7,13 +7,16 @@ package com.arp.shorturl.frontend.beans;
 
 import lombok.Data;
 
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 
 @Data
 @Named
+@ViewScoped
 public class LongUrlBean implements Serializable {
 
     private String longURL;
+    private String shortUrlResponse;
 
 }

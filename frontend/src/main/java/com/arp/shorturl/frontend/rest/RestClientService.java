@@ -16,9 +16,19 @@ public class RestClientService {
     @Value("${app.backend.fullurl}")
     private String backendUrl;
 
-    public void getNewMappingFor(String longUrl) {
+    public String getNewMappingFor(String longUrl) {
         ResponseEntity<String> nmr = restTemplate.postForEntity(backendUrl + "/add", longUrl, String.class);
 
         log.info("generated url->" + nmr.getBody());
+
+        return nmr.getBody();
+    }
+
+    public String getExistingMapping(String existingShorlUrl) {
+        ResponseEntity<String> nmr = restTemplate.postForEntity(backendUrl + "/add", existingShorlUrl, String.class);
+
+        log.info("generated url->" + nmr.getBody());
+
+        return nmr.getBody();
     }
 }

@@ -1,24 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>URL Shortner</title>
+    <title>Short URL</title>
 </h:head>
 
 <h:body>
-    <h:form id="new-mapping">
+    <div align="center">
+        <h:form id="new-mapping">
+            <p:growl id="growl" showDetail="false" sticky="true"/>
 
-        <p:panel header="Create new Short URL">
-            <h:panelGrid columns="3" cellpadding="4">
-                <h:outputText value="Your URL:"/>
-                <p:inputText id="longURL" value="#{longUrlBean.longURL}"/>
-                <p:commandButton value="Create" action="#{indexController.addNewMapping()}"/>
+            <br/>
+            <p:panel header="Create new Short URL" style="width: 800px;">
+                <h:panelGrid columns="3" cellpadding="4">
+                    <h:outputText value="Your URL:"/>
+                    <p:inputText value="#{longUrlBean.longURL}" maxlength="200" size="50"/>
+                    <p:commandButton value="Create" action="#{indexController.addNewMapping()}" update="@form"/>
+                </h:panelGrid>
+            </p:panel>
 
-            </h:panelGrid>
-        </p:panel>
-    </h:form>
+            <br/>
+            <p:panel id="response_panel" header="Mapping" rendered="#{indexController.showResult}"
+                     style="width: 800px;">
+                <h:panelGrid columns="1" cellpadding="4">
+                    <h:outputText value="#{longUrlBean.shortUrlResponse}"/>
+                    <h:outputLink value="http://stackoverflow.com" target="_blank">URL!</h:outputLink>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </div>
 </h:body>
 </html>
