@@ -24,6 +24,8 @@ public class DataService {
     private MappingRepository mappingRepository;
     @Value("${app.entry.ttl}")
     private Long entryTtl;
+    @Value("${app.nosuchelement.text}")
+    private String noSuchElementString;
 
     @PostConstruct
     public void init() {
@@ -58,7 +60,7 @@ public class DataService {
             return result.get().getTargetUrl();
         } catch (NoSuchElementException ex) {
             log.info(ex + " for query: " + mapping);
-            return "http://bing.com";
+            return noSuchElementString;
         }
     }
 }
