@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@RedisHash("mappings")
+@RedisHash
 public class Mapping implements Serializable {
 
     @Id

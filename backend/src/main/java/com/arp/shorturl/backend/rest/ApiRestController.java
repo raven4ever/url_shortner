@@ -2,13 +2,9 @@ package com.arp.shorturl.backend.rest;
 
 import com.arp.shorturl.backend.data.model.Mapping;
 import com.arp.shorturl.backend.data.svcs.DataService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +15,14 @@ public class ApiRestController {
     @Autowired
     private DataService dataService;
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     public List<Mapping> getAllMappings() {
         return dataService.getAll();
+    }
+
+    @GetMapping("/get/{existingMapping}")
+    public String getExistingMapping(@PathVariable("existingMapping") String existingMapping) {
+        return dataService.getExistingMapping(existingMapping);
     }
 
     @PostMapping(path = "/add", consumes = "text/plain", produces = "text/plain")
@@ -29,5 +30,4 @@ public class ApiRestController {
         log.info("processing for->" + longUrl);
         return dataService.addNewMapping(longUrl);
     }
-
 }

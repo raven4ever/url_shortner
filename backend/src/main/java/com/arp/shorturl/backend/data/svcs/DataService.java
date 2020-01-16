@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -46,5 +48,17 @@ public class DataService {
         log.info("saved->" + generatedValue + " for entry->" + longUrl);
 
         return generatedValue;
+    }
+
+    public String getExistingMapping(String mapping) {
+        log.info("searching for->" + mapping);
+
+        try {
+            Optional<Mapping> result = mappingRepository.findById(mapping);
+            return result.get().getTargetUrl();
+        } catch (NoSuchElementException ex) {
+            log.info(ex + " for query: " + mapping);
+            return "http://bing.com";
+        }
     }
 }
